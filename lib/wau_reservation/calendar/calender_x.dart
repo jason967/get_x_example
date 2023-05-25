@@ -75,69 +75,72 @@ class _Calendar extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CalendarController());
 
-    return Obx(() => Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(color: warmGrey),
-          ),
-          child: Column(
-            children: [
-              const _Weekdays(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: controller.days
-                          .sublist(0, 7)
-                          .map((e) => _DayCell(e))
-                          .toList(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: controller.days
-                          .sublist(7, 14)
-                          .map((e) => _DayCell(e))
-                          .toList(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: controller.days
-                          .sublist(14, 21)
-                          .map((e) => _DayCell(e))
-                          .toList(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: controller.days
-                          .sublist(21, 28)
-                          .map((e) => _DayCell(e))
-                          .toList(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: controller.days
-                          .sublist(
-                              28,
-                              controller.days.length > 35
-                                  ? 35
-                                  : controller.days.length)
-                          .map((e) => _DayCell(e))
-                          .toList(),
-                    ),
-                    if (controller.days.length > 35)
+    return Obx(() => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: warmGrey),
+            ),
+            child: Column(
+              children: [
+                const _Weekdays(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: controller.days
-                            .sublist(35, controller.days.length)
+                            .sublist(0, 7)
                             .map((e) => _DayCell(e))
                             .toList(),
                       ),
-                  ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: controller.days
+                            .sublist(7, 14)
+                            .map((e) => _DayCell(e))
+                            .toList(),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: controller.days
+                            .sublist(14, 21)
+                            .map((e) => _DayCell(e))
+                            .toList(),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: controller.days
+                            .sublist(21, 28)
+                            .map((e) => _DayCell(e))
+                            .toList(),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: controller.days
+                            .sublist(
+                                28,
+                                controller.days.length > 35
+                                    ? 35
+                                    : controller.days.length)
+                            .map((e) => _DayCell(e))
+                            .toList(),
+                      ),
+                      if (controller.days.length > 35)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: controller.days
+                              .sublist(35, controller.days.length)
+                              .map((e) => _DayCell(e))
+                              .toList(),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
